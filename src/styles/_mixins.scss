@@ -1,0 +1,36 @@
+@mixin button-ball {
+    color: orangered;
+    border-radius: 50%;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    background-image: url(../assets/Foot.png);
+    background-size: cover;
+    width: 60px;
+    height: 60px;
+    border: none;
+    cursor: pointer;
+
+    &:hover {
+        animation: rotate 2s linear infinite;
+        -webkit-animation: rotate 2s linear infinite;
+        transform-origin: center;
+    }
+
+    @keyframes rotate {
+        from {
+            transform: rotate(0deg);
+        }
+
+        to {
+            transform: rotate(360deg);
+        }
+    }
+}
+
+@mixin title {
+        color: transparent;
+        background-image: linear-gradient(to right, $title-color-start, $title-color-end);
+        -webkit-background-clip: text;
+        background-clip: text;
+}
