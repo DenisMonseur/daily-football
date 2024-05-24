@@ -10,7 +10,6 @@ function FetchLatestPost({ children }) {
       .then(response => response.json())
       .then(data => {
         setDonees(data);
-        console.log(data);
       })
       .catch(error => {
         console.error('Failed to retrieve data:', error);
