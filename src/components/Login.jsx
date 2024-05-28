@@ -47,7 +47,7 @@ function Login() {
                 <label>Password:</label>
                 <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
                 <button type="submit" className="button-ball"></button>
-                <p className="alert">{resMessage}</p>
+                <p className="alert">{resMessage} !!</p>
             </form>
             </div>
     )

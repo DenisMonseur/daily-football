@@ -2,26 +2,25 @@ import React, { useState, useEffect, createContext } from 'react';
 
 const Context = createContext();
 
-function FetchComments({ children }) {
-  const [donees, setDonees] = useState([]);
+function FetchComments({ postId, children }) {
+  const [comments, setComments] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('https://denisproj-b94c31275a95.herokuapp.com/comments');
+        const response = await fetch(`https://denisproj-b94c31275a95.herokuapp.com/comments/post/${postId}`);
         const data = await response.json();
-        setDonees(data);
-        console.log(data);
+        setComments(data);
       } catch (error) {
         console.error('Failed to retrieve data:', error);
       }
     };
 
     fetchData();
-  }, []);
+  },);
 
   return (
-    <Context.Provider value={donees}>
+    <Context.Provider value={comments}>
       {children}
     </Context.Provider>
   );

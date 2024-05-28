@@ -3,8 +3,7 @@ import { Context } from './FetchLatestPost';
 import { Link } from 'react-router-dom';
 
 function RecLatestPost() {
-  const donees = useContext(Context);
-  // console.log(donees);
+  const posts = useContext(Context);
 
   const cutOverview = (overview, maxLength) => {
     if (overview.length <= maxLength) {
@@ -15,7 +14,7 @@ function RecLatestPost() {
 
   return (
     <div className='row'>
-      {donees.map(post => (
+      {posts.map(post => (
         <div key={post.id} className='card'>
           <div className="image">
             <img src="../src/assets/USG.png" alt="ici c est st-gilles" />
