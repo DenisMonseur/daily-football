@@ -1,6 +1,7 @@
 import React from 'react';
 import { useLocation, useParams } from 'react-router-dom';
 import AddComment from './AddComment.jsx';
+import FetchComments from './FetchComments.jsx';
 import DisplayComments from './DisplayComments.jsx';
 
 
@@ -11,20 +12,21 @@ function Post() {
   const post = location.state.post; 
 
   return (
-    <>
+    <div className='background-post'>
     <div className='post-single'>
         <div className='image'>
-            <img src={`https://image.tmdb.org/t/p/w500/${post.poster_path}`} alt="" />
+            <img src="../src/assets/USG.png" alt="" />
         </div>
         <div className='info'>
             <h2>{post.title}</h2>
-            <p>Written on : {post.release_date}</p>
-            <p>{post.overview}</p>
+            <p>{post.content}</p>
         </div>
     </div>
     <AddComment/>
-    <DisplayComments/>
-    </>
+    <FetchComments>
+      <DisplayComments/>
+    </FetchComments>
+    </div>
 
   );
 }

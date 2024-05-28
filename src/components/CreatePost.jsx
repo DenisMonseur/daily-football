@@ -19,12 +19,12 @@ function CreatePost() {
         body: JSON.stringify({
         title: title,
         content: content,
-        username:user.username
+        username: user.username
         })
       });
-      console.log(user);
+      // console.log(user.username);
       const data = await response.json();
-      console.log(data);
+      // console.log(data);
 
       if (response.ok) {
         setResMessage(`Post ${title} successfully created`);

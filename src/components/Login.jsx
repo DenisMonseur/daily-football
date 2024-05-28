@@ -24,7 +24,7 @@ function Login() {
         })
         
         const data = await response.json()
-        console.log(data)
+        // console.log(data)
         if (response.ok) {
                 login(data)
                 setResMessage(`Sucessfully logged in as ${data.username} !!`)

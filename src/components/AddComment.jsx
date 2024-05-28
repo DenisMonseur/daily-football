@@ -1,31 +1,35 @@
-import { useState } from "react";
+import { useState,useContext } from "react";
+import { AuthContext } from "./AuthContext";
 
 function AddComment() {
 
-    const [comment, setComment] = useState('')
+  const [comment, setComment] = useState('')
+  const [message, setResMessage] = useState('')
+  const { user } = useContext(AuthContext);
 
     const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      const response = await fetch('https://denisproj-b94c31275a95.herokuapp.com/posts', {
+      const response = await fetch('https://denisproj-b94c31275a95.herokuapp.com/comments', {
         method: 'POST',
         headers: {
         'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-        comment: comment
+        comment: comment,
+        username: user.username,
+        postId:1
         })
       });
-      console.log(user);
+      // console.log(user);
       const data = await response.json();
-      console.log(data);
+      // console.log(data);
 
       if (response.ok) {
-        setResMessage(`Post ${title} successfully created`);
-      } else {
-        setResMessage(`Failed to create: ${data.error}`);
-      }
+        setResMessage(`Comment succesfully sended`);
+      } 
+
     } catch (error) {
       console.error(error);
       setResMessage('Error fetching data');

@@ -65,6 +65,8 @@
 
 .row {
     display: flex;
+    width: 100%;
+    min-height: 100vh;
     flex-direction: column;
     background-image: url(../assets/foot-stadium.jpg);
     background-repeat: no-repeat;
@@ -119,12 +121,25 @@
     }
 }
 
+.background-post{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    min-height: 100vh;
+    align-items: center;
+    background-image: url(../assets/foot-stadium.jpg);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center bottom;
+    color: white;
+}
 
 .post-single{
     display: flex;
     flex-direction: row;
     width: 80%;
-    background-color: $card-color;
+    background-color: $form-color;
+    opacity: 0.9;
     border-radius: 15px;
     height: fit-content;
     margin-top: 50px;
@@ -190,7 +205,7 @@
         gap: 10px;
         padding: 10px;
         border-radius: 15px;
-        background-color: $card-color;
+        background-color: $form-color;
         .author{
             font-weight: bold;
             font-style: italic;

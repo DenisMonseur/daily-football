@@ -2,15 +2,16 @@ import React, { useState, useEffect, createContext } from 'react';
 
 const Context = createContext();
 
-function FetchLatestPost({ children }) {
+function FetchComments({ children }) {
   const [donees, setDonees] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('https://denisproj-b94c31275a95.herokuapp.com/posts');
+        const response = await fetch('https://denisproj-b94c31275a95.herokuapp.com/comments');
         const data = await response.json();
         setDonees(data);
+        console.log(data);
       } catch (error) {
         console.error('Failed to retrieve data:', error);
       }
@@ -26,5 +27,5 @@ function FetchLatestPost({ children }) {
   );
 }
 
-export default FetchLatestPost;
+export default FetchComments;
 export { Context };
