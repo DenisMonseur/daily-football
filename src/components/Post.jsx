@@ -1,5 +1,5 @@
 import React from 'react';
-import { useLocation, useParams } from 'react-router-dom';
+import { useLocation, useParams, useNavigate } from 'react-router-dom';
 import AddComment from './AddComment.jsx';
 import FetchComments from './FetchComments.jsx';
 import DisplayComments from './DisplayComments.jsx';
@@ -7,11 +7,16 @@ import DisplayComments from './DisplayComments.jsx';
 function Post() {
   const location = useLocation();
   const { id } = useParams();
+  const navigate = useNavigate();
   const post = location.state?.post;
 
   if (!post) {
     return <div>Post not found</div>;
   }
+
+  const handleEdit = () => {
+    navigate(`/edit-post/${id}`, { state: { post } });
+  };
 
   return (
     <div className='background-post'>
@@ -22,12 +27,13 @@ function Post() {
         <div className='info'>
           <h2>{post.title}</h2>
           <p>{post.content}</p>
+          <button onClick={handleEdit}>Edit Post</button>
         </div>
       </div>
-      <AddComment postId={id} />
+      {/* <AddComment postId={id} />
       <FetchComments postId={id}>
         <DisplayComments />
-      </FetchComments>
+      </FetchComments> */}
     </div>
   );
 }

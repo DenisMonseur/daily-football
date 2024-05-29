@@ -1,16 +1,17 @@
-import './styles/App.css'
+import './styles/App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { ListProvider } from './components/ListContext.jsx';
-import NavBar from './components/NavBar.jsx';
-import Login from './components/Login.jsx';
-import Register from './components/Register.jsx';
-import FetchLatestPost from './components/FetchLatestPost.jsx';
-import RecLatestPost from './components/RecLatestPost.jsx';
-import Post from './components/Post.jsx';
-import CreatePost from './components/CreatePost.jsx';
-import NotFound from './components/NotFound.jsx';
-import { AuthProvider } from './components/AuthContext.jsx';
-import AuthenticatedRoute from './components/AuthenticatedRoute.jsx';
+import { ListProvider } from './components/ListContext';
+import NavBar from './components/NavBar';
+import Login from './components/Login';
+import Register from './components/Register';
+import FetchLatestPost from './components/FetchLatestPost';
+import RecLatestPost from './components/RecLatestPost';
+import Post from './components/Post';
+import CreatePost from './components/CreatePost';
+import EditPost from './components/EditPost';
+import NotFound from './components/NotFound';
+import { AuthProvider } from './components/AuthContext';
+import AuthenticatedRoute from './components/AuthenticatedRoute';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
               <Route index element={<FetchLatestPost><RecLatestPost /></FetchLatestPost>} />
               <Route path="/post/:id" element={<Post />} />
               <Route path="/create-post" element={<CreatePost />} />
+              <Route path="/edit-post/:id" element={<EditPost />} /> 
             </Route>
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
