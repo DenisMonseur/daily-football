@@ -1,1 +1,1 @@
-web: npm install && npm run build && npm run serve
+web: vite preview --port $PORT
