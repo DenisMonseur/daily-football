@@ -24,10 +24,15 @@ function Register() {
         })
 
         const data = await response.json()
-        // console.log(data);
+        console.log(data);
+        if(data.username === undefined){
+            setResMessage('On veut pas de toi ici !')
+        }
         setResMessage(`User ${data.username} sucessfully created !!`)
+
     } catch (error) {
         console.error(error);
+        setPassword(data.error)
     }
     }
     

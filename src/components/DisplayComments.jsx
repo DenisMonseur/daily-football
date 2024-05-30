@@ -87,7 +87,11 @@ function DisplayComments({ comments, onUpdateComments, onDeleteComment }) {
                 <button onClick={() => handleUpdateSubmit(comment.id)}>Submit</button>
               </div>
             ) : (
-              <p className='comment-text'>{comment.content}</p>
+              <div>
+                  <p className='comment-user'>{user.username}</p>
+                  <p className='comment-text'>{comment.content}</p>
+              </div>
+              
             )}
             <button onClick={() => setUpdatingCommentId(comment.id)}>Update</button>
             <button onClick={() => handleDelete(comment.id)}>Delete</button>
