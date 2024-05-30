@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import { AuthContext } from "./AuthContext";
 
-function AddComment({ postId }) {
+function AddComment({ postId, onCommentAdded }) {
   const [comment, setComment] = useState('');
   const [resMessage, setResMessage] = useState('');
   const { user } = useContext(AuthContext);
@@ -22,11 +22,11 @@ function AddComment({ postId }) {
         }),
       });
       const data = await response.json();
-      console.log(data)
 
       if (response.ok) {
         setResMessage(`Comment (${comment}) successfully sent`);
-        setComment(''); 
+        setComment('');
+        onCommentAdded(data); // Call the callback to update the comments list
       } else {
         setResMessage(data.message || 'Error sending comment');
       }
@@ -44,7 +44,6 @@ function AddComment({ postId }) {
         <button type="submit">Submit</button>
         <p className="alert">{resMessage}</p>
       </form>
-      
     </div>
   );
 }

@@ -1,8 +1,72 @@
-import React, { useContext } from 'react';
-import { Context } from './FetchComments';
+import React, { useState, useContext } from 'react';
+import { AuthContext } from './AuthContext';
 
-function DisplayComments() {
-  const comments = useContext(Context);
+function DisplayComments({ comments, onUpdateComments, onDeleteComment }) {
+  const [updatingCommentId, setUpdatingCommentId] = useState(null);
+  const [updatedContent, setUpdatedContent] = useState('');
+  const [error, setError] = useState('');
+  const { user } = useContext(AuthContext);
+
+  const handleUpdate = async (id) => {
+    try {
+      const response = await fetch(`https://denisproj-b94c31275a95.herokuapp.com/comments/${id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          updatedComment: updatedContent,
+          username: user.username
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to update post');
+      }
+
+      // Call the function to update comments after modification
+      onUpdateComments();
+
+      // Reset the updating comment state
+      setUpdatingCommentId(null);
+      setUpdatedContent('');
+
+    } catch (error) {
+      setError(error.message);
+    }
+  };
+
+  const handleDelete = async (id) => {
+    try {
+      const response = await fetch(`https://denisproj-b94c31275a95.herokuapp.com/comments/${id}`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          username: user.username,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to delete post');
+      }
+
+      // Call the function to update comments after deletion
+      onUpdateComments();
+
+    } catch (error) {
+      setError(error.message);
+    }
+  };
+
+  const handleInputChange = (e) => {
+    setUpdatedContent(e.target.value);
+  };
+
+  const handleUpdateSubmit = (id) => {
+    handleUpdate(id);
+  };
 
   if (!comments || comments.length === 0) {
     return <div className='no-comments'>No comments available.</div>;
@@ -13,7 +77,20 @@ function DisplayComments() {
       {comments.map((comment) => (
         <div key={comment.id} className='comment-card'>
           <div className='comment-info'>
-            <p className='comment-text'>{comment.comment}</p>
+            {updatingCommentId === comment.id ? (
+              <div>
+                <input
+                  type="text"
+                  value={updatedContent}
+                  onChange={handleInputChange}
+                />
+                <button onClick={() => handleUpdateSubmit(comment.id)}>Submit</button>
+              </div>
+            ) : (
+              <p className='comment-text'>{comment.content}</p>
+            )}
+            <button onClick={() => setUpdatingCommentId(comment.id)}>Update</button>
+            <button onClick={() => handleDelete(comment.id)}>Delete</button>
           </div>
         </div>
       ))}

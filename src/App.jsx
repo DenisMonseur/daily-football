@@ -21,7 +21,7 @@ function App() {
           <NavBar />
           <Routes>
             <Route path="/" element={<AuthenticatedRoute />}>
-              <Route index element={<FetchLatestPost><RecLatestPost /></FetchLatestPost>} />
+              <Route index element={<FetchLatestPost><RecLatestPost/></FetchLatestPost>} />
               <Route path="/post/:id" element={<Post />} />
               <Route path="/create-post" element={<CreatePost />} />
               <Route path="/edit-post/:id" element={<EditPost />} /> 

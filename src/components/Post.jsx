@@ -1,7 +1,6 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useLocation, useParams, useNavigate } from 'react-router-dom';
 import AddComment from './AddComment.jsx';
-import FetchComments from './FetchComments.jsx';
 import DisplayComments from './DisplayComments.jsx';
 
 function Post() {
@@ -9,14 +8,49 @@ function Post() {
   const { id } = useParams();
   const navigate = useNavigate();
   const post = location.state?.post;
+  const [comments, setComments] = useState([]);
+  const [error, setError] = useState('');
 
-  if (!post) {
-    return <div>Post not found</div>;
-  }
+  useEffect(() => {
+    const fetchComments = async () => {
+      try {
+        const response = await fetch(`https://denisproj-b94c31275a95.herokuapp.com/comments/post/${id}`);
+        
+        if (!response.ok) {
+          const errorData = await response.json();
+          throw new Error(`Error: ${response.status} ${response.statusText} - ${errorData.error}`);
+        }
+
+        const data = await response.json();
+        setComments(data);
+        console.log(data);
+      } catch (error) {
+        console.error('Failed to retrieve comments:', error);
+        setError(`Failed to load comments: ${error.message}`);
+      }
+    };
+
+    fetchComments();
+  }, [id]);
 
   const handleEdit = () => {
     navigate(`/edit-post/${id}`, { state: { post } });
   };
+
+  const handleCommentAdded = (newComment) => {
+    setComments((prevComments) => [...prevComments, newComment]);
+  };
+
+  const updateComments = async () => {
+    // Function to fetch updated comments after modification
+    const response = await fetch(`https://denisproj-b94c31275a95.herokuapp.com/comments/post/${id}`);
+    const data = await response.json();
+    setComments(data);
+  };
+
+  if (!post) {
+    return <div>Post not found</div>;
+  }
 
   return (
     <div className='background-post'>
@@ -30,10 +64,12 @@ function Post() {
           <button onClick={handleEdit}>Edit Post</button>
         </div>
       </div>
-      <AddComment postId={id} />
-      <FetchComments postId={id}>
-        <DisplayComments />
-      </FetchComments> 
+      <AddComment postId={id} onCommentAdded={handleCommentAdded} />
+      {error ? (
+        <div className="error">{error}</div>
+      ) : (
+        <DisplayComments comments={comments} onUpdateComments={updateComments} />
+      )}
     </div>
   );
 }

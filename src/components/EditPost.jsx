@@ -10,8 +10,6 @@ const EditPost = () => {
   const [post, setPost] = useState(location.state?.post || { title: '', content: '' });
   const [error, setError] = useState(null);
 
-  console.log(id);
-
   const handleChange = (e) => {
     const { name, value } = e.target;
     setPost((prevPost) => ({
@@ -21,49 +19,67 @@ const EditPost = () => {
   };
 
   const handleUpdate = async (e) => {
-    e.preventDefault();
-    try {
-      const response = await fetch(`https://denisproj-b94c31275a95.herokuapp.com/posts/${id}`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(post),
-      });
+  e.preventDefault();
+  try {
+    console.log('Request body:', {
+      title: post.title,
+      content: post.content,
+      username: user.username
+    });
 
-      if (!response.ok) {
-        throw new Error('Failed to update post');
-      }
+    const response = await fetch(`https://denisproj-b94c31275a95.herokuapp.com/posts/${id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        title: post.title,
+        content: post.content,
+        username: user.username
+      }),
+    });
 
-      const data = await response.json();
-      navigate(`/post/${id}`, { state: { post: data } });
-    } catch (error) {
-      setError(error.message);
+    if (!response.ok) {
+      throw new Error('Failed to update post');
     }
-  };
+
+    const data = await response.json();
+    console.log('Update response:', data);
+    navigate(`/post/${id}`, { state: { post: data } });
+  } catch (error) {
+    setError(error.message);
+  }
+};
 
   const handleDelete = async () => {
-    try {
-      const response = await fetch(`https://denisproj-b94c31275a95.herokuapp.com/posts/${id}`, {
-        method: 'DELETE',
-      });
+  try {
+    const response = await fetch(`https://denisproj-b94c31275a95.herokuapp.com/posts/${id}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        username: user.username,
+      }),
+    });
 
-      if (!response.ok) {
-        throw new Error('Failed to delete post');
-      }
+    console.log(user.username)
 
-      navigate('/');
-    } catch (error) {
-      setError(error.message);
+    if (!response.ok) {
+      throw new Error('Failed to delete post');
     }
-  };
+
+    navigate('/');
+  } catch (error) {
+    setError(error.message);
+  }
+};
 
   return (
-    <div>
-      <h2>Edit Post</h2>
-      {error && <p className="error">{error}</p>}
+    <div className='edit'>
       <form onSubmit={handleUpdate}>
-        <div>
+        <h2>Edit Post</h2>
+      {error && <p className="error">{error}</p>}
           <label htmlFor="title">Title:</label>
           <input
             type="text"
@@ -73,9 +89,8 @@ const EditPost = () => {
             onChange={handleChange}
             required
           />
-        </div>
-        <div>
-          <label htmlFor="content">Content:</label>
+        
+        <label htmlFor="content">Content:</label>
           <textarea
             id="content"
             name="content"
@@ -83,10 +98,10 @@ const EditPost = () => {
             onChange={handleChange}
             required
           />
-        </div>
-        <button type="submit">Update Post</button>
+        
+        <button type="submit" className='update'>Update Post</button>
+        <button onClick={handleDelete} className='update'>Delete Post</button>
       </form>
-      <button onClick={handleDelete}>Delete Post</button>
     </div>
   );
 };

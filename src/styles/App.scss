@@ -61,6 +61,10 @@
 
 .main{
     @include formPage;
+
+    button{
+        @include button-ball
+    }
 }
 
 .row {
@@ -240,5 +244,20 @@
     margin-bottom: 20px;
     font-size: bold;
     font-style: italic;
+}
+
+.edit{
+    @include formPage;
+    
+    form{
+        width: 40%;
+        height: fit-content;
+        gap: 40px;
+        padding: 20px;
+    }
+
+    button{
+        @include button;
+    }
 }
 

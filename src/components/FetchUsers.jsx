@@ -10,6 +10,7 @@ function FetchUsers({ children }) {
       try {
         const response = await fetch('https://denisproj-b94c31275a95.herokuapp.com/users');
         const data = await response.json();
+        console.log(data)
         setDonees(data);
       } catch (error) {
         console.error('Failed to retrieve data:', error);

@@ -8,7 +8,7 @@ function FetchSingleComment({ children }) {
   useEffect(() => {
     const fetchData = async () => {
     try {
-        const response = await fetch('https://denisproj-b94c31275a95.herokuapp.com/comments/1');
+        const response = await fetch('https://denisproj-b94c31275a95.herokuapp.com/comments/2');
         const data = await response.json();
         setDonees(data);
         console.log(data);
