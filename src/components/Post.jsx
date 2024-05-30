@@ -30,10 +30,10 @@ function Post() {
           <button onClick={handleEdit}>Edit Post</button>
         </div>
       </div>
-      {/* <AddComment postId={id} />
+      <AddComment postId={id} />
       <FetchComments postId={id}>
         <DisplayComments />
-      </FetchComments> */}
+      </FetchComments> 
     </div>
   );
 }

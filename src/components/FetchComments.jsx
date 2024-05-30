@@ -1,14 +1,15 @@
-import React, { useState, useEffect, createContext } from 'react';
+import React, { useState, useEffect, createContext} from 'react';
 
-const CommentsContext = createContext();
 
-function FetchComments({ children }) {
+const Context = createContext();
+
+function FetchComments({ postId, children }) {
   const [comments, setComments] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(`https://denisproj-b94c31275a95.herokuapp.com/comments`)
+        const response = await fetch(`https://denisproj-b94c31275a95.herokuapp.com/comments/post/${postId}`);
         const data = await response.json();
         setComments(data);
         console.log(data);
@@ -18,14 +19,14 @@ function FetchComments({ children }) {
     };
 
     fetchData();
-  }, []);
+  }, [postId]);
 
   return (
-    <CommentsContext.Provider value={comments}>
+    <Context.Provider value={comments}>
       {children}
-    </CommentsContext.Provider>
+    </Context.Provider>
   );
 }
 
 export default FetchComments;
-export { CommentsContext as Context };
+export { Context };
