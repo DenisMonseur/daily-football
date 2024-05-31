@@ -166,6 +166,12 @@
         flex-direction: column;
         justify-content: space-around;
         margin-left: 20px;
+
+        button {
+                @include button;
+                width: 30%;
+                margin-left: 50px;
+            }
     }
 }
 
@@ -173,6 +179,12 @@
     margin-top: 50px;
     width: 80%;
     height: 140px;
+
+    h3{
+        color: $main-color;
+        text-transform: uppercase;
+    }
+    
     form{
         display: flex;
         flex-direction: row;
@@ -252,12 +264,85 @@
     form{
         width: 40%;
         height: fit-content;
-        gap: 40px;
+        gap: 20px;
         padding: 20px;
+
+            textarea{
+                width: 80%;
+                height: 200px;
+            }
     }
 
-    button{
-        @include button;
+    .buttons{
+        display: flex;
+        gap: 20px;
+
+        button {
+                @include button;
+            }
+
+        .delete{
+            color: white;
+            background-color: black;
+        }
+    }
+
+}
+
+.image{
+    background-image: url(../assets/USG.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.comments-row{
+    margin-right: 125px;
+    
+    .comment-card{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        background-color: $form-color;
+        border-radius: 15px;
+        padding: 10px;
+        width: fit-content;
+        gap: 30px;
+
+            .comment-value{
+                display: flex;
+                gap: 20px;
+
+                .comment-user{
+                    font-weight: bold;
+                    font-size: 18px;
+                    text-decoration: underline;
+                }
+            }
+        
+        .buttons{
+            display: flex;
+            gap: 10px;
+            
+            button{
+                @include button
+            }
+
+            .black{
+                color: white;
+                background-color: black;
+            }
+        }
+
+        .comment-change{
+            display: flex;
+            gap: 10px;
+            button{
+                @include submit;
+            }
+        }
     }
 }
 
+.hello{
+    margin-right: 50px;
+}

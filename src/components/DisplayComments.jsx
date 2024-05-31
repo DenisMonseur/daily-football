@@ -76,10 +76,9 @@ function DisplayComments({ comments, onUpdateComments, onDeleteComment }) {
     <div className='comments-row'>
       {comments.map((comment) => (
         <div key={comment.id} className='comment-card'>
-          <div className='comment-info'>
             {updatingCommentId === comment.id ? (
-              <div>
-                <input
+              <div className='comment-change'>
+                <input placeholder='type new text'
                   type="text"
                   value={updatedContent}
                   onChange={handleInputChange}
@@ -87,16 +86,17 @@ function DisplayComments({ comments, onUpdateComments, onDeleteComment }) {
                 <button onClick={() => handleUpdateSubmit(comment.id)}>Submit</button>
               </div>
             ) : (
-              <div>
+              <div className='comment-value'>
                   <p className='comment-user'>{user.username}</p>
                   <p className='comment-text'>{comment.content}</p>
               </div>
-              
             )}
+            <div className="buttons">
             <button onClick={() => setUpdatingCommentId(comment.id)}>Update</button>
-            <button onClick={() => handleDelete(comment.id)}>Delete</button>
+            <button className='black' onClick={() => handleDelete(comment.id)}>Delete</button>
+            </div>
           </div>
-        </div>
+        
       ))}
     </div>
   );

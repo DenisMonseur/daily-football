@@ -17,7 +17,6 @@ function RecLatestPost() {
       {posts.map(post => (
         <div key={post.id} className='card'>
           <div className="image">
-            <img src="../src/assets/USG.png" alt="ici c est st-gilles" />
           </div>
           <div className="info">
             <p className='title'>{post.title}</p>

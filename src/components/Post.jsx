@@ -56,7 +56,6 @@ function Post() {
     <div className='background-post'>
       <div className='post-single'>
         <div className='image'>
-          <img src="../assets/USG.png" alt="Post" />
         </div>
         <div className='info'>
           <h2>{post.title}</h2>

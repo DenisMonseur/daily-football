@@ -98,9 +98,11 @@ const EditPost = () => {
             onChange={handleChange}
             required
           />
-        
-        <button type="submit" className='update'>Update Post</button>
-        <button onClick={handleDelete} className='update'>Delete Post</button>
+        <div className="buttons">
+          <button type="submit" className='update'>Update Post</button>
+        <button onClick={handleDelete} className='delete'>Delete Post</button>
+        </div>
+      
       </form>
     </div>
   );

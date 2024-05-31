@@ -244,11 +244,34 @@
   justify-content: space-around;
   margin-left: 20px;
 }
+.post-single .info button {
+  background-color: white;
+  padding: 5px;
+  border: none;
+  border-radius: 15px;
+  font-size: large;
+  font-weight: bold;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  transition: transform 0.5s;
+  width: 30%;
+  margin-left: 50px;
+}
+.post-single .info button:hover {
+  transform: scale(1.3);
+}
 
 .add-comment {
   margin-top: 50px;
   width: 80%;
   height: 140px;
+}
+.add-comment h3 {
+  color: white;
+  text-transform: uppercase;
 }
 .add-comment form {
   display: flex;
@@ -410,10 +433,18 @@
 .edit form {
   width: 40%;
   height: fit-content;
-  gap: 40px;
+  gap: 20px;
   padding: 20px;
 }
-.edit button {
+.edit form textarea {
+  width: 80%;
+  height: 200px;
+}
+.edit .buttons {
+  display: flex;
+  gap: 20px;
+}
+.edit .buttons button {
   background-color: white;
   padding: 5px;
   border: none;
@@ -427,6 +458,86 @@
   text-decoration: none;
   transition: transform 0.5s;
 }
-.edit button:hover {
+.edit .buttons button:hover {
   transform: scale(1.3);
+}
+.edit .buttons .delete {
+  color: white;
+  background-color: black;
+}
+
+.image {
+  background-image: url(../assets/USG.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.comments-row {
+  margin-right: 125px;
+}
+.comments-row .comment-card {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: rgba(39, 178, 180, 0.968627451);
+  border-radius: 15px;
+  padding: 10px;
+  width: fit-content;
+  gap: 30px;
+}
+.comments-row .comment-card .comment-value {
+  display: flex;
+  gap: 20px;
+}
+.comments-row .comment-card .comment-value .comment-user {
+  font-weight: bold;
+  font-size: 18px;
+  text-decoration: underline;
+}
+.comments-row .comment-card .buttons {
+  display: flex;
+  gap: 10px;
+}
+.comments-row .comment-card .buttons button {
+  background-color: white;
+  padding: 5px;
+  border: none;
+  border-radius: 15px;
+  font-size: large;
+  font-weight: bold;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  transition: transform 0.5s;
+}
+.comments-row .comment-card .buttons button:hover {
+  transform: scale(1.3);
+}
+.comments-row .comment-card .buttons .black {
+  color: white;
+  background-color: black;
+}
+.comments-row .comment-card .comment-change {
+  display: flex;
+  gap: 10px;
+}
+.comments-row .comment-card .comment-change button {
+  background-color: red;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 15px;
+  font-size: large;
+  font-weight: bold;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+}
+
+.hello {
+  margin-right: 50px;
 }

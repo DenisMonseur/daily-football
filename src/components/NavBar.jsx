@@ -24,6 +24,7 @@ function NavBar() {
       <div className="right-nav">
         {user ? (
           <>
+            <h3 className="hello">Hello {user.username}</h3>
             <span onClick={logout} style={{ cursor: "pointer" }}>
               <h3>Logout</h3>
             </span>
