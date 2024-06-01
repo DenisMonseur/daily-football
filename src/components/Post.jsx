@@ -7,7 +7,7 @@ function Post() {
   const location = useLocation();
   const { id } = useParams();
   const navigate = useNavigate();
-  const post = location.state?.post;
+  const { post, imageClass } = location.state || {};
   const [comments, setComments] = useState([]);
   const [error, setError] = useState('');
 
@@ -34,7 +34,7 @@ function Post() {
   }, [id]);
 
   const handleEdit = () => {
-    navigate(`/edit-post/${id}`, { state: { post } });
+    navigate(`/edit-post/${id}`, { state: { post, imageClass } });
   };
 
   const handleCommentAdded = (newComment) => {
@@ -42,7 +42,6 @@ function Post() {
   };
 
   const updateComments = async () => {
-    // Function to fetch updated comments after modification
     const response = await fetch(`https://denisproj-b94c31275a95.herokuapp.com/comments/post/${id}`);
     const data = await response.json();
     setComments(data);
@@ -55,7 +54,7 @@ function Post() {
   return (
     <div className='background-post'>
       <div className='post-single'>
-        <div className='image'>
+        <div className={`image ${imageClass}`}>
         </div>
         <div className='info'>
           <h2>{post.title}</h2>

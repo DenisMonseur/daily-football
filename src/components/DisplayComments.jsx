@@ -23,11 +23,8 @@ function DisplayComments({ comments, onUpdateComments, onDeleteComment }) {
       if (!response.ok) {
         throw new Error('Failed to update post');
       }
-
-      // Call the function to update comments after modification
+      
       onUpdateComments();
-
-      // Reset the updating comment state
       setUpdatingCommentId(null);
       setUpdatedContent('');
 
@@ -52,7 +49,6 @@ function DisplayComments({ comments, onUpdateComments, onDeleteComment }) {
         throw new Error('Failed to delete post');
       }
 
-      // Call the function to update comments after deletion
       onUpdateComments();
 
     } catch (error) {
@@ -66,6 +62,11 @@ function DisplayComments({ comments, onUpdateComments, onDeleteComment }) {
 
   const handleUpdateSubmit = (id) => {
     handleUpdate(id);
+  };
+
+  // cut uneeded date info
+  const formatDate = (dateString) => {
+    return dateString.split('T')[0]; 
   };
 
   if (!comments || comments.length === 0) {
@@ -87,7 +88,8 @@ function DisplayComments({ comments, onUpdateComments, onDeleteComment }) {
               </div>
             ) : (
               <div className='comment-value'>
-                  <p className='comment-user'>{user.username}</p>
+                  <p className='comment-date'>{formatDate(comment.createdAt)}</p> 
+                  <p className='comment-user'>{comment.username}</p>
                   <p className='comment-text'>{comment.content}</p>
               </div>
             )}
@@ -95,8 +97,7 @@ function DisplayComments({ comments, onUpdateComments, onDeleteComment }) {
             <button onClick={() => setUpdatingCommentId(comment.id)}>Update</button>
             <button className='black' onClick={() => handleDelete(comment.id)}>Delete</button>
             </div>
-          </div>
-        
+          </div> 
       ))}
     </div>
   );

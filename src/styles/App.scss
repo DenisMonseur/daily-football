@@ -69,9 +69,11 @@
 
 .row {
     display: flex;
+    justify-content: center;
+    align-items: center;
     width: 100%;
     min-height: 100vh;
-    flex-direction: column;
+    flex-direction: column-reverse;
     background-image: url(../assets/foot-stadium.jpg);
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -86,7 +88,7 @@
         width: 70%;
         border-radius: 15px;
         margin-top: 50px;
-        margin-left: 25px;
+        
 
         .image {
             width: 350px;
@@ -156,7 +158,6 @@
         img {
             width: 500px;
             height: 500px;
-            object-fit: cover;
             border-radius: 15px 0px 0px 15px;
         }
     }
@@ -166,10 +167,12 @@
         flex-direction: column;
         justify-content: space-around;
         margin-left: 20px;
+        max-width: 800px;
+        
 
         button {
                 @include button;
-                width: 30%;
+                width: 70px;
                 margin-left: 50px;
             }
     }
@@ -222,9 +225,15 @@
         padding: 10px;
         border-radius: 15px;
         background-color: $form-color;
+        
         .author{
             font-weight: bold;
             font-style: italic;
+        }
+
+        .date{
+            display: flex;
+            flex-direction: row;
         }
     }
 }
@@ -239,7 +248,7 @@
             width: 80%;
             height: 100px;}
         button{
-            @include button;
+            @include button-ball;
         }
     }
 }
@@ -290,9 +299,41 @@
 }
 
 .image{
-    background-image: url(../assets/USG.png);
     background-size: cover;
     background-repeat: no-repeat;
+    background-position: center;
+}
+
+.image1{
+    background-image: url(../assets/USG.png);
+}
+
+.image2 {
+    background-image: url(../assets/USG.png);
+}
+
+.image3 {
+    background-image: url(../assets/USG.png);
+}
+
+.image4 {
+    background-image: url(../assets/USG.png);
+}
+
+.image5 {
+    background-image: url(../assets/USG.png);
+}
+
+.image6 {
+    background-image: url(../assets/amouraweb1.jpg);
+}
+
+.image7 {
+    background-image: url(../assets/CUPWinners.avif);
+}
+
+.image8 {
+    background-image: url(../assets/real-madrid-pls.jpg);
 }
 
 .comments-row{
@@ -316,6 +357,10 @@
                     font-weight: bold;
                     font-size: 18px;
                     text-decoration: underline;
+                }
+
+                .comment-date{
+                    display: inline;
                 }
             }
         

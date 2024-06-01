@@ -14,14 +14,14 @@ function RecLatestPost() {
 
   return (
     <div className='row'>
-      {posts.map(post => (
+      {posts.map((post, index) => (
         <div key={post.id} className='card'>
-          <div className="image">
+          <div className={`image image${index + 1}`}>
           </div>
-          <div className="info">
+          <div className='info'>
             <p className='title'>{post.title}</p>
             <p className='content'>{cutOverview(post.content, 300)}</p>
-            <Link to={`/post/${post.id}`} state={{ post }}>
+            <Link to={`/post/${post.id}`} state={{ post, imageClass: `image${index + 1}` }}>
               <button>Read more</button>
             </Link>
           </div>
