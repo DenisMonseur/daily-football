@@ -64,7 +64,6 @@ function DisplayComments({ comments, onUpdateComments, onDeleteComment }) {
     handleUpdate(id);
   };
 
-  // cut uneeded date info
   const formatDate = (dateString) => {
     return dateString.split('T')[0]; 
   };
@@ -77,28 +76,28 @@ function DisplayComments({ comments, onUpdateComments, onDeleteComment }) {
     <div className='comments-row'>
       {comments.map((comment) => (
         <div key={comment.id} className='comment-card'>
-            {updatingCommentId === comment.id ? (
-              <div className='comment-change'>
-                <input placeholder='type new text'
-                  type="text"
-                  value={updatedContent}
-                  onChange={handleInputChange}
-                />
-                <button onClick={() => handleUpdateSubmit(comment.id)}>Submit</button>
-              </div>
-            ) : (
-              <div className='comment-value'>
-                  <p className='comment-date'>{formatDate(comment.createdAt)}</p> 
-                  <p className='comment-user'>{comment.username}</p>
-                  <p className='comment-text'>{comment.content}</p>
-              </div>
-            )}
-            <div className="buttons">
+          <div className='comment-value'>
+            <p className='comment-date'>{formatDate(comment.createdAt)}</p> 
+            <p className='comment-user'>{comment.username}</p>
+            <p className='comment-text'>{comment.content}</p>
+          </div>
+          <div className="buttons">
             <button onClick={() => setUpdatingCommentId(comment.id)}>Update</button>
             <button className='black' onClick={() => handleDelete(comment.id)}>Delete</button>
+          </div>
+          {updatingCommentId === comment.id && (
+            <div className='comment-change'>
+              <input placeholder='Type new text'
+                type="text"
+                value={updatedContent}
+                onChange={handleInputChange}
+              />
+              <button onClick={() => handleUpdateSubmit(comment.id)}>Submit</button>
             </div>
-          </div> 
+          )}
+        </div> 
       ))}
+      {error && <div className="error">{error}</div>}
     </div>
   );
 }

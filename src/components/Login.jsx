@@ -1,5 +1,6 @@
 import React, { useState, useContext } from 'react'
 import { AuthContext } from './AuthContext'
+import { Navigate } from 'react-router-dom'
 
 function Login() {
 
@@ -47,7 +48,7 @@ function Login() {
                 <label>Password:</label>
                 <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
                 <button type="submit" className="button-ball"></button>
-                <p className="alert">{resMessage} !!</p>
+                <p className="alert">{resMessage}</p>
             </form>
             </div>
     )

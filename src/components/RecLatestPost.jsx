@@ -20,7 +20,7 @@ function RecLatestPost() {
           </div>
           <div className='info'>
             <p className='title'>{post.title}</p>
-            <p className='content'>{cutOverview(post.content, 300)}</p>
+            <p className='content'>{cutOverview(post.content, 400)}</p>
             <Link to={`/post/${post.id}`} state={{ post, imageClass: `image${index + 1}` }}>
               <button>Read more</button>
             </Link>

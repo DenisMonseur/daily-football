@@ -543,6 +543,9 @@
 .comments-row .comment-card .comment-value .comment-date {
   display: inline;
 }
+.comments-row .comment-card .comment-value .comment-change input {
+  width: fit-content;
+}
 .comments-row .comment-card .buttons {
   display: flex;
   gap: 10px;

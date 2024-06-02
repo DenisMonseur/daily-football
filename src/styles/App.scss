@@ -1,5 +1,6 @@
 @import '_colors';
 @import '_mixins';
+@import '_responsive';
 
 *{
     margin: 0px;
@@ -361,6 +362,12 @@
 
                 .comment-date{
                     display: inline;
+                }
+
+                .comment-change{
+                    input {
+                        width: fit-content;
+                    }
                 }
             }
         
