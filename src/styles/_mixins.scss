@@ -1,12 +1,13 @@
 @mixin button{
-    background-color: $main-color;
+    background-color: $text-color;
+    color: $nav-color;
+    opacity: 1;
     padding: 5px;
     border: none;
     border-radius: 15px;
     font-size: large;
     font-weight: bold;
-    display: flex;
-    flex-direction: row;
+    display: inline;
     justify-content: center;
     align-items: center;
     text-decoration: none;
@@ -90,19 +91,17 @@
 
 
 @mixin title {
-        color: transparent;
-        background-image: linear-gradient(to right, $title-color-start, $title-color-end);
-        -webkit-background-clip: text;
-        background-clip: text;
+        color: $text-color;
         text-decoration: none;
 }
 
 @mixin side-nav {
         display: flex;
         flex-direction: row;
-        justify-content: space-around;
+        justify-content: space-between;
         align-items: center;
         gap: 20px;
+        width: 200px;
 
 }
 
@@ -116,6 +115,7 @@
         background-position: center bottom;
         display: flex;
         justify-content: center;
+        overflow: hidden;
     
         form{
             display: flex;
@@ -133,6 +133,10 @@
 
             h1{
                 margin-top: 20px;
+            }
+
+            textarea{
+                white-space: pre-wrap;
             }
 
             .alert{

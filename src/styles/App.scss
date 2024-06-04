@@ -1,6 +1,6 @@
 @import '_colors';
 @import '_mixins';
-@import '_responsive';
+
 
 *{
     margin: 0px;
@@ -13,6 +13,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    overflow: hidden;
 }
 
 
@@ -26,22 +27,16 @@
     background-color: $nav-color;
     
     .title{
-
         display: flex;
         flex-direction: row;
         justify-content: center;
         align-items: center;
         
-        .ball{
-            margin-top: 25px;
-            @include ball;
-        }
-
         h1{
             @include title;
         }
+
     }
-    
 
     h3 {
         @include title; 
@@ -113,6 +108,7 @@
             p{
                 margin-left: 20px;
                 font-size: 16px;
+                white-space: pre-wrap;
             }
 
             .title{
@@ -155,12 +151,6 @@
         width: 500px;
         height: 500px;
         border-radius: 15px 0px 0px 15px;
-
-        img {
-            width: 500px;
-            height: 500px;
-            border-radius: 15px 0px 0px 15px;
-        }
     }
 
     .info{
@@ -168,8 +158,11 @@
         flex-direction: column;
         justify-content: space-around;
         margin-left: 20px;
-        max-width: 800px;
+        max-width: 700px;
         
+        p{
+            white-space: pre-wrap;
+        }
 
         button {
                 @include button;
@@ -247,7 +240,9 @@
 
         textarea{
             width: 80%;
-            height: 100px;}
+            height: 100px;
+            white-space: pre-wrap;
+        }
         button{
             @include button-ball;
         }
@@ -276,6 +271,11 @@
         height: fit-content;
         gap: 20px;
         padding: 20px;
+        white-space: pre-wrap;
+
+            input{
+                width: 60%;
+            }
 
             textarea{
                 width: 80%;
@@ -292,8 +292,8 @@
             }
 
         .delete{
-            color: white;
-            background-color: black;
+            color: $text-color;
+            background-color: $nav-color;
         }
     }
 
@@ -339,6 +339,8 @@
 
 .comments-row{
     margin-right: 125px;
+    display: flex;
+    flex-direction: column-reverse;
     
     .comment-card{
         display: flex;
@@ -380,8 +382,8 @@
             }
 
             .black{
-                color: white;
-                background-color: black;
+                color: $text-color;
+                background-color: $nav-color;
             }
         }
 
@@ -398,3 +400,12 @@
 .hello{
     margin-right: 50px;
 }
+
+.empty{
+    width: 220px;
+}
+
+.empty2{
+    width: 55px;
+}
+

@@ -81,10 +81,10 @@ function DisplayComments({ comments, onUpdateComments, onDeleteComment }) {
             <p className='comment-user'>{comment.username}</p>
             <p className='comment-text'>{comment.content}</p>
           </div>
-          <div className="buttons">
+          {(user.username === comment.username || user.username === 'admin') && (<div className="buttons">
             <button onClick={() => setUpdatingCommentId(comment.id)}>Update</button>
             <button className='black' onClick={() => handleDelete(comment.id)}>Delete</button>
-          </div>
+          </div>)}
           {updatingCommentId === comment.id && (
             <div className='comment-change'>
               <input placeholder='Type new text'

@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import { useLocation, useParams, useNavigate } from 'react-router-dom';
+import React, { useState, useEffect, useContext } from 'react';
+import { useLocation, useParams, useNavigate} from 'react-router-dom';
 import AddComment from './AddComment.jsx';
 import DisplayComments from './DisplayComments.jsx';
+import { AuthContext } from "./AuthContext";
 
 function Post() {
   const location = useLocation();
@@ -10,6 +11,9 @@ function Post() {
   const { post, imageClass } = location.state || {};
   const [comments, setComments] = useState([]);
   const [error, setError] = useState('');
+  const { user } = useContext(AuthContext);
+
+  
 
   useEffect(() => {
     const fetchComments = async () => {
@@ -59,7 +63,7 @@ function Post() {
         <div className='info'>
           <h2>{post.title}</h2>
           <p>{post.content}</p>
-          <button onClick={handleEdit}>Edit Post</button>
+          {user.username ==='admin' && (<button onClick={handleEdit}>Edit Post</button>) }
         </div>
       </div>
       <AddComment postId={id} onCommentAdded={handleCommentAdded} />

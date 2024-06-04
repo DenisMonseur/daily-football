@@ -11,7 +11,7 @@ function FetchLatestPost({ children }) {
         const response = await fetch('https://denisproj-b94c31275a95.herokuapp.com/posts');
         const data = await response.json();
         setDonees(data);
-        console.log(data);
+        // console.log(data);
       } catch (error) {
         console.error('Failed to retrieve data:', error);
       }
